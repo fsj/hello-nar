@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>io.github.fsj</groupId>
+    <artifactId>hello-nar</artifactId>
+    <version>0.1.0</version>
+    <packaging>nar</packaging>
+
+    <name>Hello NAR</name>
+    <description>Hello World C++ project which builds using Maven</description>
+
+    <properties>
+        <nar-plugin.version>3.5.2</nar-plugin.version>
+        <!-- <boost.version>1.57.0+nar.10</boost.version> -->
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.maven-nar</groupId>
+                <artifactId>nar-maven-plugin</artifactId>
+                <version>${nar-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <libraries>
+                        <library>
+                            <type>executable</type>
+                        </library>
+                    </libraries>
+                    <cpp>
+                        <debug>false</debug>
+                        <includes>
+                            <include>**/*.hpp</include>
+                            <include>**/*.cpp</include>
+                        </includes>
+                        <options combine.children="append">
+                            <option>-std=c++11</option>
+                            <option>-Wall</option>
+                            <option>-Wextra</option>
+                            <option>-pedantic</option>
+                            <option>-O2</option>
+                            <!-- <option>-pthread</option> -->
+                        </options>
+                    </cpp>
+                    <linker>
+                        <!-- not needed for hello world
+                        <sysLibs>
+                            <sysLib><name>pthread</name></sysLib>
+                        </sysLibs>
+                        -->
+                    </linker>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- https://github.com/markjohndoyle/boost-nar/ -->
+        <!--
+        <dependency>
+            <groupId>org.boost</groupId>
+            <artifactId>regex</artifactId>
+            <version>${boost.version}</version>
+            <type>nar</type>
+        </dependency>
+        -->
+    </dependencies>
+</project>
